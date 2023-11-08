@@ -4,6 +4,7 @@ const products = require('./fake/products.json')
 
 const TOKEN = '6595212066:AAHQebVfMIWTL3FXBaYIgtFuuBmT6KX82fU'
 const GROUP_ID = '-4046110812'
+const STAFF_GROUP_ID = '-4031131799'
 const bot = new TelegramBot(TOKEN, {polling: true});
 const app = 'https://edd1s.netlify.app'
 const productsRef = db.collection('products')
@@ -31,6 +32,10 @@ bot.on('message', async (msg) => {
           `Дякуємо за Ваше замовлення!\nЧекаємо на Вас у магазині "${data?.success.name}"\nза адресою: ${data?.success.address}.`
         )
         await bot.sendLocation(chatId, data?.success.location?.lat, data?.success.location?.lng)
+        await bot.sendMessage(
+          STAFF_GROUP_ID,
+          `НОВЕ ЗАМОВЛЕННЯ\n\n<strong>"${data?.success?.name}, ${data?.success?.address}"</strong>\n${data?.success?.list.map((item, index) => `${index + 1}. ${item.title} - ${item.quantity} уп.\n`).join('')}\n\n${data?.success?.person?.name}\n${data?.success?.person?.phone}`
+        )
       }
       if (data?.over && data?.over.length > 0) {
         data.over.forEach(d => {
