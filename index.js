@@ -13,7 +13,7 @@ bot.on('message', async (msg) => {
   const text = msg.text
 
   if (text === '/start') {
-    await bot.sendMessage(chatId, `${JSON.stringify(msg)}`, {
+    await bot.sendMessage(chatId, `Натискай кнопку "Замовити" в моєму меню та ні в чому собі не відмовляй :)`, {
       reply_markup: {
         keyboard: [
           [ { text: 'Замовити', web_app: { url: app } } ]
