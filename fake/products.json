@@ -1,0 +1,39 @@
+{
+  "store": {
+    "name": "Store 13",
+    "address": "13 G.Martin st.",
+    "location": "49.5877511,34.5558385"
+  },
+  "list": [
+    {
+      "id": "1",
+      "title": "Котлети курячі",
+      "quantity": 20,
+      "image": "https://images.unsplash.com/photo-1558649332-07f21970d309?auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "2",
+      "title": "Котлети яловичі",
+      "quantity": 10,
+      "image": "https://images.unsplash.com/photo-1659345737306-7022e0687e0d?auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "3",
+      "title": "Паштет ніжний",
+      "quantity": 5,
+      "image": "https://images.unsplash.com/photo-1610213024737-7620f07db1a2?auto=format&fit=crop&q=60"
+    }
+  ],
+  "soon": [
+    {
+      "id": "1",
+      "title": "Котлети індичі",
+      "image": "https://images.unsplash.com/photo-1558649332-07f21970d309?auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "2",
+      "title": "Паштет люксовий",
+      "image": "https://images.unsplash.com/photo-1558649332-07f21970d309?auto=format&fit=crop&q=60"
+    }
+  ]
+}
