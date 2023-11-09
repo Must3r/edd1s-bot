@@ -1,6 +1,8 @@
+const express = require('express')
 const TelegramBot = require('node-telegram-bot-api')
 const { db } = require('./firebase.js')
 const products = require('./fake/products.json')
+const app = express()
 
 const TOKEN = '6595212066:AAHQebVfMIWTL3FXBaYIgtFuuBmT6KX82fU'
 const GROUP_ID = '-4046110812'
@@ -119,5 +121,6 @@ function runAtSpecificTime(hour, minutes, func) {
   }, eta_ms)
 }
 // fillFakeProducts()
-runAtSpecificTime(20, 0, async () => { await sendMessage() })
-runAtSpecificTime(18, 0, async () => { await sendReminding() })
+runAtSpecificTime(16, 20, async () => { await sendMessage() })
+// runAtSpecificTime(18, 0, async () => { await sendReminding() })
+app.listen(1313)
