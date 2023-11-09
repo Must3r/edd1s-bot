@@ -99,6 +99,13 @@ async function sendMessage() {
   })
 }
 
+async function sendReminding() {
+  await bot.sendMessage(
+    GROUP_ID,
+    `<strong><em>АВТОМАТИЧНЕ НАГАДУВАННЯ</em></strong>\nЗа дві години <em>(о 20:00)</em> бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
+    { parse_mode: 'html' })
+}
+
 function runAtSpecificTime(hour, minutes, func) {
   const twentyFourHours = 86400000
   const now = new Date()
@@ -112,4 +119,5 @@ function runAtSpecificTime(hour, minutes, func) {
   }, eta_ms)
 }
 // fillFakeProducts()
-runAtSpecificTime(10, 16, async () => { await sendMessage() })
+runAtSpecificTime(20, 0, async () => { await sendMessage() })
+runAtSpecificTime(18, 0, async () => { await sendReminding() })
