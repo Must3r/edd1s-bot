@@ -119,5 +119,5 @@ function runAtSpecificTime(hour, minutes, func) {
   }, eta_ms)
 }
 // fillFakeProducts()
-runAtSpecificTime(16, 0, () => { sendReminding() })
-runAtSpecificTime(18, 0, () => { sendMessage() })
+runAtSpecificTime(16, 0, async () => { await sendReminding() })
+runAtSpecificTime(18, 0, async () => { await sendMessage() })
