@@ -33,7 +33,7 @@ bot.on('message', async (msg) => {
         )
         await bot.sendLocation(chatId, data?.success.location?.lat, data?.success.location?.lng)
         await bot.sendMessage(
-          STAFF_GROUP_ID,
+          (data?.success?.tgid || STAFF_GROUP_ID),
           `НОВЕ ЗАМОВЛЕННЯ\n\n<strong>"${data?.success?.name}, ${data?.success?.address}"</strong>\n${data?.success?.list.map((item, index) => `${index + 1}. ${item.title} - ${item.quantity} уп.\n`).join('')}\n\n${data?.success?.person?.name}\n${data?.success?.person?.phone}`,
           { parse_mode: 'html' }
         )
