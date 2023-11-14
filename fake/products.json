@@ -9,19 +9,19 @@
       "id": "1",
       "title": "Котлети курячі",
       "quantity": 20,
-      "image": "https://images.unsplash.com/photo-1558649332-07f21970d309?auto=format&fit=crop&q=60"
+      "image": "https://skushnir.com.ua/images/edd/asorti.jpg"
     },
     {
       "id": "2",
       "title": "Котлети яловичі",
       "quantity": 10,
-      "image": "https://images.unsplash.com/photo-1659345737306-7022e0687e0d?auto=format&fit=crop&q=60"
+      "image": "https://skushnir.com.ua/images/edd/induk.jpg"
     },
     {
       "id": "3",
       "title": "Паштет ніжний",
       "quantity": 5,
-      "image": "https://images.unsplash.com/photo-1610213024737-7620f07db1a2?auto=format&fit=crop&q=60"
+      "image": "https://skushnir.com.ua/images/edd/kur.jpg"
     }
   ],
   "soon": [
