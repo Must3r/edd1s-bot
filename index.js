@@ -21,12 +21,13 @@ bot.on('message', async (msg) => {
         ]
       }
     });
-    await bot.sendMessage(chatId, `Приєднуйся да нашої групи, де завжди актуальна інформація про наявність асортименту, цікаві новини та акції`, {
+    await bot.sendMessage(chatId, `<strong>Приєднуйся да нашої групи</strong>\n<strong>КОВБАСНА РОДИНА.</strong>\nТам завжди актуальна інформація про наявність асортименту, цікаві новини та акції`, {
       reply_markup: {
         inline_keyboard: [
           [ { text: 'Приєднатися', url: 't.me/kovbasna_rodyna' } ]
         ]
-      }
+      },
+      parse_mode: 'html'
     });
   }
 
