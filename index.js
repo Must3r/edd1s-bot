@@ -14,6 +14,7 @@ bot.on('message', async (msg) => {
   const text = msg.text
 
   if (text === '/start') {
+    await bot.sendMessage(chatId, `${msg}`);
     await bot.sendMessage(chatId, `Натискай кнопку "Замовити" в моєму меню та ні в чому собі не відмовляй :)`, {
       reply_markup: {
         keyboard: [
