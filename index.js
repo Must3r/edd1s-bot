@@ -3,7 +3,7 @@ const { db } = require('./firebase.js')
 const products = require('./fake/products.json')
 
 const TOKEN = '6595212066:AAHQebVfMIWTL3FXBaYIgtFuuBmT6KX82fU'
-const GROUP_ID = '-4046110812'
+const GROUP_ID = '@kovbasna_rodyna'
 const STAFF_GROUP_ID = '-4031131799'
 const bot = new TelegramBot(TOKEN, {polling: true});
 const app = 'https://edd1s.netlify.app'
@@ -128,5 +128,5 @@ function runAtSpecificTime(hour, minutes, func) {
   }, eta_ms)
 }
 // fillFakeProducts()
-runAtSpecificTime(16, 0, async () => { await sendReminding() })
-runAtSpecificTime(18, 0, async () => { await sendMessage() })
+runAtSpecificTime(16, 30, async () => { await sendReminding() })
+runAtSpecificTime(18, 30, async () => { await sendMessage() })
