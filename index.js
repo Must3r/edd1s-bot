@@ -93,7 +93,7 @@ async function fillFakeProducts() {
 async function sendMessage() {
   const products = await getProducts()
   const productsList = []
-  const title = 'Сьогодні в асортименті:\n\n'
+  const title = 'Завтра в асортименті:\n\n'
   products.forEach(({ store, list }) => {
     productsList.push(`<strong>${store.name}, (${store.address}):</strong>\n${list.map((item, index) => `${index + 1}. ${item.title} - ${item.quantity} уп.\n`).join('')}\n`)
   })
