@@ -111,7 +111,7 @@ async function sendMessage() {
 async function sendReminding() {
   await bot.sendMessage(
     GROUP_ID,
-    `<strong><em>АВТОМАТИЧНЕ НАГАДУВАННЯ</em></strong>\nЗа дві години <em>(о 20:00)</em> бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
+    `<strong><em>АВТОМАТИЧНЕ НАГАДУВАННЯ</em></strong>\nЗа дві години <em>(о 20:30)</em> бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
     { parse_mode: 'html' })
 }
 
