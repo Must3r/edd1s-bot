@@ -92,27 +92,33 @@ async function fillFakeProducts() {
 
 async function sendMessage() {
   const products = await getProducts()
-  const productsList = []
-  const title = 'Завтра в асортименті:\n\n'
-  products.forEach(({ store, list }) => {
-    productsList.push(`<strong>${store.name}, (${store.address}):</strong>\n${list.map((item, index) => `${index + 1}. ${item.title} - ${item.quantity} уп.\n`).join('')}\n`)
-  })
-  const message = title.concat(productsList.join(''))
-  await bot.sendMessage(GROUP_ID, message, {
-    reply_markup: {
-      inline_keyboard: [
-        [ { text: 'Замовити', url: `t.me/edd1sbot` } ]
-      ]
-    },
-    parse_mode: 'html'
-  })
+  if (products.length > 0) {
+    const productsList = []
+    const title = 'Завтра в асортименті:\n\n'
+    products.forEach(({ store, list }) => {
+      productsList.push(`<strong>${store.name}, (${store.address}):</strong>\n${list.map((item, index) => `${index + 1}. ${item.title} - ${item.quantity} уп.\n`).join('')}\n`)
+    })
+    const message = title.concat(productsList.join(''))
+    await bot.sendMessage(GROUP_ID, message, {
+      reply_markup: {
+        inline_keyboard: [
+          [ { text: 'Замовити', url: `t.me/edd1sbot` } ]
+        ]
+      },
+      parse_mode: 'html'
+    })
+  }
 }
 
 async function sendReminding() {
-  await bot.sendMessage(
-    GROUP_ID,
-    `<strong><em>АВТОМАТИЧНЕ НАГАДУВАННЯ</em></strong>\nЗа дві години <em>(о 20:30)</em> бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
-    { parse_mode: 'html' })
+  const products = await getProducts()
+  if (products.length > 0) {
+    await bot.sendMessage(
+      GROUP_ID,
+      `За дві години <em>(о 20:30)</em> бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
+      { parse_mode: 'html' }
+    )
+  }
 }
 
 function runAtSpecificTime(hour, minutes, func) {
