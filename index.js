@@ -29,6 +29,16 @@ bot.on('message', async (msg) => {
       },
       parse_mode: 'html'
     });
+  } else {
+    if (text.length > 0) {
+      await bot.sendMessage(chatId, `Для замовлення натисніте кнопку "Замовити"`, {
+        reply_markup: {
+          keyboard: [
+            [ { text: 'Замовити', web_app: { url: app } } ]
+          ]
+        }
+      });
+    }
   }
 
   if (msg?.web_app_data?.data) {
@@ -115,7 +125,7 @@ async function sendReminding() {
   if (products.length > 0) {
     await bot.sendMessage(
       GROUP_ID,
-      `За дві години <em>(о 20:30)</em> бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
+      `О 20:00 бронь на замовлення анулюється. Якщо ви ще не забрали замовлення, зараз - саме час :)`,
       { parse_mode: 'html' }
     )
   }
@@ -134,5 +144,5 @@ function runAtSpecificTime(hour, minutes, func) {
   }, eta_ms)
 }
 // fillFakeProducts()
-runAtSpecificTime(16, 30, async () => { await sendReminding() })
+runAtSpecificTime(15, 0, async () => { await sendReminding() })
 runAtSpecificTime(18, 30, async () => { await sendMessage() })
