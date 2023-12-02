@@ -36,7 +36,8 @@ bot.on('message', async (msg) => {
           keyboard: [
             [ { text: 'Замовити', web_app: { url: app } } ]
           ]
-        }
+        },
+        parse_mode: 'html'
       });
     }
   }
