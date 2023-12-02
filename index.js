@@ -31,7 +31,7 @@ bot.on('message', async (msg) => {
     });
   } else {
     if (text.length > 0) {
-      await bot.sendMessage(chatId, `Для замовлення натисніте кнопку "Замовити"`, {
+      await bot.sendMessage(chatId, `Для замовлення натисніть кнопку <b>"Замовити"</b>`, {
         reply_markup: {
           keyboard: [
             [ { text: 'Замовити', web_app: { url: app } } ]
