@@ -1,3 +1,5 @@
+const express = require('express')
+const cors = require('cors')
 const TelegramBot = require('node-telegram-bot-api')
 const { db } = require('./firebase.js')
 const products = require('./fake/products.json')
@@ -7,7 +9,11 @@ const GROUP_ID = '@kovbasna_rodyna'
 const STAFF_GROUP_ID = '-4031131799'
 const bot = new TelegramBot(TOKEN, {polling: true});
 const app = 'https://edd1s.netlify.app'
+const server = express()
 const productsRef = db.collection('products')
+
+server.use(express.json())
+server.use(cors())
 
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id
@@ -17,7 +23,7 @@ bot.on('message', async (msg) => {
     await bot.sendMessage(chatId, `Натискай кнопку "Замовити" в моєму меню та ні в чому собі не відмовляй :)`, {
       reply_markup: {
         keyboard: [
-          [ { text: 'Замовити', web_app: { url: app } } ]
+          [ { text: 'Замовити', web_app: { url: app + '/order' } } ]
         ]
       }
     });
@@ -30,11 +36,11 @@ bot.on('message', async (msg) => {
       parse_mode: 'html'
     });
   } else {
-    if (text.length > 0) {
+    if (text?.length > 0) {
       await bot.sendMessage(chatId, `Для замовлення натисніть кнопку <b>"Замовити"</b>`, {
         reply_markup: {
           keyboard: [
-            [ { text: 'Замовити', web_app: { url: app } } ]
+            [ { text: 'Замовити', web_app: { url: app + '/order' } } ]
           ]
         },
         parse_mode: 'html'
@@ -98,6 +104,7 @@ async function getProducts() {
 }
 
 async function fillFakeProducts() {
+  const d = new Date()
   await productsRef.add(products)
 }
 
@@ -147,3 +154,32 @@ function runAtSpecificTime(hour, minutes, func) {
 // fillFakeProducts()
 runAtSpecificTime(15, 0, async () => { await sendReminding() })
 runAtSpecificTime(18, 30, async () => { await sendMessage() })
+
+server.post('/order-data', async (req, res) => {
+  const data = req.body
+  try {
+    await bot.answerWebAppQuery(data?.success?.query_id, {
+      type: 'article',
+      id: data?.success?.query_id,
+      title: 'Successfully tested',
+      input_message_content: {
+        message_text: `The data has been successfully received:\n ${data}`
+      }
+    })
+    return res.status(200).json({})
+  } catch (e) {
+    await bot.answerWebAppQuery(data?.success?.query_id, {
+      type: 'article',
+      id: data?.success?.query_id,
+      title: 'Test failed :(',
+      input_message_content: {
+        message_text: `The data has been successfully received:\n ${data}`
+      }
+    })
+    return res.status(500).json({})
+  }
+})
+
+const PORT = 1313
+
+server.listen(PORT, () => console.log(`Server started on port ${PORT}`))
